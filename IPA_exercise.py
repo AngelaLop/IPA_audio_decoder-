@@ -43,16 +43,34 @@ print(audio_responses)
 
 dtafile = '/Users/WB585318/OneDrive - Universidad de los Andes/WB/Git_repositories/IPA_empirical_excercise/Data/empowerment_experiment_demo.dta'
 df = pd.read_stata(dtafile)
-df["empowerment_1a"] = np.nan 
-df["empowerment_2a"] = np.nan 
-
+df["empowerment_1m"] = np.nan 
+df["empowerment_2m"] = np.nan
+df["empowerment_3m"] = np.nan
+df["empowerment_4m"] = np.nan
+df["empowerment_5m"] = np.nan
+df["empowerment_6m"] = np.nan
 
 IDs = [item[0] for item in audio_responses] 
 q1_response = [item[1] for item in audio_responses] 
-q2_response = [item[2] for item in audio_responses] 
+q2_response = [item[2] for item in audio_responses]
+q3_response = [item[3] for item in audio_responses]
+q4_response = [item[4] for item in audio_responses]
+q5_response = [item[5] for item in audio_responses]
+q6_response = [item[6] for item in audio_responses]
+
 q1_dict={x:y for x,y in zip(IDs,q1_response)} 
-q2_dict={x:y for x,y in zip(IDs,q2_response)} 
-df['empowerment_1a'] = df['caseid'].map(q1_dict) 
-df['empowerment_2a'] = df['caseid'].map(q2_dict) 
+q2_dict={x:y for x,y in zip(IDs,q2_response)}
+q3_dict={x:y for x,y in zip(IDs,q3_response)}
+q4_dict={x:y for x,y in zip(IDs,q4_response)}
+q5_dict={x:y for x,y in zip(IDs,q5_response)}
+q6_dict={x:y for x,y in zip(IDs,q6_response)}
+
+
+df['empowerment_1m'] = df['caseid'].map(q1_dict) 
+df['empowerment_2m'] = df['caseid'].map(q2_dict)
+df["empowerment_3m"] = df['caseid'].map(q3_dict)
+df["empowerment_4m"] = df['caseid'].map(q4_dict)
+df["empowerment_5m"] = df['caseid'].map(q5_dict)
+df["empowerment_6m"] = df['caseid'].map(q6_dict)
 
 df.to_stata('/Users/WB585318/OneDrive - Universidad de los Andes/WB/Git_repositories/IPA_empirical_excercise/Data/empowerment_experiment_demo_with_audio responses.dta')
