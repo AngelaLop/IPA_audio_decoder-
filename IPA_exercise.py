@@ -24,9 +24,9 @@ audio_files = os.listdir()
 
 for file in audio_files:
     name, ext = os.path.splitext(file) 
-    if ext == ".mp3":
-        mp3_sound = AudioSegment.from_mp3(file)
-        mp3_sound.export("{0}.wav".format(name), format="wav")
+    if ext == ".m4a":
+        m4a_sound = AudioSegment.from_file(file, format='m4a')
+        m4a_sound.export("{0}.wav".format(name), format="wav")
 
 for file in audio_files:
     name, ext = os.path.splitext(file) 
@@ -43,6 +43,10 @@ print(audio_responses)
 
 dtafile = '/Users/WB585318/OneDrive - Universidad de los Andes/WB/Git_repositories/IPA_empirical_excercise/Data/empowerment_experiment_demo.dta'
 df = pd.read_stata(dtafile)
+
+tone_audio = df[df["empo_treatment"] == 2]
+caseid_audio = tone_audio[["caseid", "empo_treatment", "file_audio_empowerment"]
+                          ]
 df["empowerment_1m"] = np.nan 
 df["empowerment_2m"] = np.nan
 df["empowerment_3m"] = np.nan
